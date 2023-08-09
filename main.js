@@ -375,5 +375,4 @@ function onSubmit(e) {
   }
 }    */
 
-localStorage.setItem('Name','Steve')
 console.log(localStorage.getItem('Name'))

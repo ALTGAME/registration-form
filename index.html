@@ -9,11 +9,11 @@
   </head>
   <body>
     <header>
-      <h1>JS For Beginners</h1>
+      <h1>DATA BOX</h1>
     </header>
 
     <section class="container">
-      <form id="my-form">
+      <form onsubmit="saveToLocalStorage(event)">
         <h1>Add User</h1>
         <div class="msg"></div>
         <div>
@@ -24,6 +24,10 @@
           <label for="email">Email:</label>
           <input type="text" id="email">
         </div>
+        <div>
+        <label for="contact">contact</label>
+        <input type="text" id="contact">
+      </div>
         <input class="btn" type="submit" value="Submit">
       </form>
 
@@ -39,16 +43,24 @@
 
     <script src="main.js"></script>
   </body>
-  <script type="text/javascript">
-    let myObj={
-        name: ANTHONY
-        age:154
-    };
+  <script >
+    function saveToLocalStorage(event){
+      event.preventDefault();
+      const name=event.target.username.value;
+      const email=event.target.emailId.value;
+      const contact=event.target.contact.value;
 
-    let myObj_serialized=JSON.stringify(myObj);
-    console.log(myObj_serialized);
-
-    localStorage.setItem("myObj",myObj_serialized);
-    console.log(localStorage);
+      const obj={
+        name,
+        email,
+        contact,
+      }
+      localStorage.setItem(obj.email, JSON.stringify(obj))
+      showUserOnScreen(obj)
+    }
+    function showUserOnScreen(obj){
+      const parentElem =document.getElementById('users')
+      parentElem.innerHTML='<li>$(obj.name) -$(obj.email) -$(obj.contact)</li>'
+    }
   </script>
 </html>

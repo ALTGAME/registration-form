@@ -46,8 +46,8 @@
   <script >
     function saveToLocalStorage(event){
       event.preventDefault();
-      const name=event.target.username.value;
-      const email=event.target.emailId.value;
+      const name=event.target.name.value;
+      const email=event.target.email.value;
       const contact=event.target.contact.value;
 
       const obj={
@@ -60,7 +60,20 @@
     }
     function showUserOnScreen(obj){
       const parentElem =document.getElementById('users')
-      parentElem.innerHTML='<li>$(obj.name) -$(obj.email) -$(obj.contact)</li>'
+      
+      const childElem=document.createElement('li')
+      childElem.textContent=obj.name + " -"  + obj.email + "-"  +  obj.contact
+
+
+      const deleteButton=document.createElement('Input')
+      deleteButton.type="button"
+      deleteButton.value="Delete"
+      deleteButton.onclick = () => {
+        localStorage.removeItem(obj.email)
+        parentElem.removeChild(childElem)
+      }
+      childElem.appendChild(deleteButton)
+      parentElem.appendChild(childElem)
     }
   </script>
 </html>

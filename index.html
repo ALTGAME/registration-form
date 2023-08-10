@@ -58,7 +58,7 @@
       localStorage.setItem(obj.email, JSON.stringify(obj))
       showUserOnScreen(obj)
     }
-    function showUserOnScreen(obj){
+    function showUserOnScreen(obj)
       const parentElem =document.getElementById('users')
       
       const childElem=document.createElement('li')
@@ -72,7 +72,21 @@
         localStorage.removeItem(obj.email)
         parentElem.removeChild(childElem)
       }
+
+      const editButton=document.createElement('Input')
+      editButton.type="button"
+      editButton.value="Edit"
+      editButton.onclick = () => {
+        localStorage.removeItem(obj.email)
+        parentElem.removeChild(childElem)
+
+        document.getElementById('usernameInputTag').value=obj.name
+        document.getElementById('emailInputTag').value=obj.email
+        document.getElementById('contactInputTag').value=obj.contact
+
+
       childElem.appendChild(deleteButton)
+      childElem.appendChild(editButton)
       parentElem.appendChild(childElem)
     }
   </script>
